@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tguerin <tguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 18:14:07 by tguerin           #+#    #+#             */
-/*   Updated: 2022/09/29 19:26:47 by tguerin          ###   ########.fr       */
+/*   Created: 2022/09/26 16:08:00 by tguerin           #+#    #+#             */
+/*   Updated: 2022/10/03 11:55:14 by tguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*copy;
-	int		i;
+	int	i;
 
-	copy = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	if (!copy)
+	if (!dest && !src)
 		return (NULL);
-	i = 0;
-	while (s[i])
+	if (dest - src < 0)
 	{
-		copy[i] = s[i];
-		i++;
+		i = 0;
+		while ((size_t)i < n)
+		{
+			((char *)dest)[i] = ((char *)src)[i];
+			i++;
+		}
 	}
-	return (copy);
+	else
+	{
+		while (n)
+		{
+			((char *)dest)[n - 1] = ((char *)src)[n - 1];
+			n--;
+		}
+	}
+	return (dest);
 }

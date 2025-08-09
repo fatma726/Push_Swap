@@ -1,62 +1,69 @@
-NAME = push_swap
-BONUS_NAME = checker
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fatmtahmdabrahym <fatmtahmdabrahym@stud    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/08/09 18:59:46 by fatmtahmdab       #+#    #+#              #
+#    Updated: 2025/08/09 18:59:48 by fatmtahmdab      ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-INCLUDES = -Iincludes -Ilibft
+SRCS =		main.c \
+			commands1.c \
+			commands2.c \
+			commands3.c \
+			utils.c \
+			utils2.c \
+			parse.c \
+			sort.c \
+			sort2.c \
+			sort3.c
+SRCS_B =	checker.c \
+			parse.c \
+			commands1.c \
+			commands2.c \
+			commands3.c \
+			utils2.c \
+			utils.c
+FT_SRC =	libft
+SRCS_GNL =	get_next_line/get_next_line.c
 
-# Main source files
-SRC = \
-    src/main.c \
-    src/parse.c \
-    src/parse_utils.c \
-    src/normalize.c \
-    src/duplicates.c \
-    src/sorted.c \
-    src/algorithm.c \
-    src/small_sorts.c \
-    src/quicksort_a.c \
-    src/quicksort_b.c \
-    src/swap.c \
-    src/push.c \
-    src/rotate.c \
-    src/reverse_rotate.c
+OBJS =		${SRCS:.c=.o}
+OBJS_B =	${SRCS_B:.c=.o}
+OBJ_GNL =	${SRCS_GNL:.c=.o}
 
-OBJ = $(SRC:.c=.o)
+NAME =		push_swap
+NAME_B =	checker
 
-# Bonus source files (checker)
-BONUS_SRC = \
-    checker/checker.c \
-    checker/checker_utils.c \
-    checker/swap.c \
-    checker/push.c \
-    checker/rotate.c \
-    checker/reverse_rotate.c
+CC =		clang
+RM =		rm -f
 
-BONUS_OBJ = $(BONUS_SRC:.c=.o)
+CFLAGS =	-Wall -Wextra -Werror
+FTFLAGS =	libft/libft.a
 
-LIBFT = libft/libft.a
+.c.o:
+			${CC} -c ${CFLAGS} $< -o ${<:.c=.o}
 
-all: $(NAME)
+${NAME}:	${OBJS}
+			make -C ${FT_SRC}
+			${CC} -o ${NAME} ${OBJS} ${FTFLAGS}
 
-$(LIBFT):
-	$(MAKE) -C libft
-
-$(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) -o $(NAME)
-
-bonus: $(LIBFT) $(OBJ) $(BONUS_OBJ)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(BONUS_OBJ) $(LIBFT) -o $(BONUS_NAME)
+${NAME_B}:	${OBJ_GNL} ${OBJS_B}
+			make -C ${FT_SRC}
+			${CC} -o ${NAME_B} ${OBJ_GNL} ${OBJS_B} ${FTFLAGS}
 
 clean:
-	rm -f $(OBJ) $(BONUS_OBJ)
-	$(MAKE) clean -C libft
+			${RM} ${OBJS} ${OBJS_B} ${OBJ_GNL}
 
-fclean: clean
-	rm -f $(NAME)
-	rm -rf $(BONUS_NAME)
-	$(MAKE) fclean -C libft
+fclean:		clean
+			${RM} ${NAME} ${NAME_B}
 
-re: fclean all
+re:			fclean all
 
-.PHONY: all bonus clean fclean re
+all:		${NAME}
+
+bonus:		${NAME_B}
+
+.PHONY: clean, fclean, re, all, bonus

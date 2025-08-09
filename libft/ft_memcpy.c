@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tguerin <tguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 18:14:07 by tguerin           #+#    #+#             */
-/*   Updated: 2022/09/29 19:26:47 by tguerin          ###   ########.fr       */
+/*   Created: 2022/09/26 15:34:09 by tguerin           #+#    #+#             */
+/*   Updated: 2022/09/30 15:38:44 by tguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char	*copy;
-	int		i;
-
-	copy = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	if (!copy)
+	if (!dest && !src)
 		return (NULL);
-	i = 0;
-	while (s[i])
+	while (n)
 	{
-		copy[i] = s[i];
-		i++;
+		((char *)dest)[n - 1] = ((char *)src)[n - 1];
+		n--;
 	}
-	return (copy);
+	return (dest);
 }

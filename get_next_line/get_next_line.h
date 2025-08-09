@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tguerin <tguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 18:14:07 by tguerin           #+#    #+#             */
-/*   Updated: 2022/09/29 19:26:47 by tguerin          ###   ########.fr       */
+/*   Created: 2022/10/04 10:24:33 by tguerin           #+#    #+#             */
+/*   Updated: 2022/11/08 14:49:40 by tguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-char	*ft_strdup(const char *s)
-{
-	char	*copy;
-	int		i;
+# include "../libft/libft.h"
+# include <unistd.h>
+# include <stdlib.h>
 
-	copy = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	if (!copy)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		copy[i] = s[i];
-		i++;
-	}
-	return (copy);
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
+
+char	*get_next_line(int fd);
+
+#endif

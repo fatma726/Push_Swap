@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   commands3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tguerin <tguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 18:14:07 by tguerin           #+#    #+#             */
-/*   Updated: 2022/09/29 19:26:47 by tguerin          ###   ########.fr       */
+/*   Created: 2022/11/08 15:35:16 by tguerin           #+#    #+#             */
+/*   Updated: 2022/11/08 15:37:04 by tguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-char	*ft_strdup(const char *s)
+void	rr(t_stack *a, t_stack *b, int do_print)
 {
-	char	*copy;
-	int		i;
+	ra(a, 0);
+	rb(b, 0);
+	if (do_print)
+		put_command("rr");
+}
 
-	copy = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	if (!copy)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		copy[i] = s[i];
-		i++;
-	}
-	return (copy);
+void	rrr(t_stack *a, t_stack *b, int do_print)
+{
+	rra(a, 0);
+	rrb(b, 0);
+	if (do_print)
+		put_command("rrr");
 }

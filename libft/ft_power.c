@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tguerin <tguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 18:14:07 by tguerin           #+#    #+#             */
-/*   Updated: 2022/09/29 19:26:47 by tguerin          ###   ########.fr       */
+/*   Created: 2022/10/06 23:00:57 by tguerin           #+#    #+#             */
+/*   Updated: 2022/10/06 23:01:27 by tguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strdup(const char *s)
+int	ft_power(int nb, int power)
 {
-	char	*copy;
-	int		i;
+	int	result;
 
-	copy = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	if (!copy)
-		return (NULL);
-	i = 0;
-	while (s[i])
+	if (power < 0)
+		return (0);
+	if (power == 0)
+		return (1);
+	result = 1;
+	while (power > 0)
 	{
-		copy[i] = s[i];
-		i++;
+		result *= nb;
+		power--;
 	}
-	return (copy);
+	return (result);
 }

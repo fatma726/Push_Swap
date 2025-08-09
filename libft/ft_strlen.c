@@ -1,20 +1,23 @@
-/*
- * ft_strlen.c
- *
- * Computes the length of a null‑terminated string.  The return
- * value is the number of characters preceding the terminating null
- * byte.  This implementation avoids using any standard library
- * functions and complies with the 42 coding style.
- */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tguerin <tguerin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/26 13:54:25 by tguerin           #+#    #+#             */
+/*   Updated: 2022/09/28 10:17:48 by tguerin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-    size_t len;
+	size_t	i;
 
-    len = 0;
-    while (s[len])
-        len++;
-    return (len);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

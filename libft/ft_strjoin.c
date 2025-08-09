@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tguerin <tguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 18:14:07 by tguerin           #+#    #+#             */
-/*   Updated: 2022/09/29 19:26:47 by tguerin          ###   ########.fr       */
+/*   Created: 2022/09/28 10:05:52 by tguerin           #+#    #+#             */
+/*   Updated: 2022/09/30 12:10:04 by tguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*copy;
+	char	*join;
 	int		i;
+	int		j;
 
-	copy = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	if (!copy)
+	if (!s1)
+		return (NULL);
+	join = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
+	if (!join)
 		return (NULL);
 	i = 0;
-	while (s[i])
+	while (s1[i])
 	{
-		copy[i] = s[i];
+		join[i] = s1[i];
 		i++;
 	}
-	return (copy);
+	j = 0;
+	while (s2[j])
+	{
+		join[i + j] = s2[j];
+		j++;
+	}
+	return (join);
 }
